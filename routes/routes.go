@@ -2,61 +2,76 @@ package routes
 
 import (
 	"crs-backend/internal/handlers"
-	"crs-backend/middleware"
+	"crs-backend/middlewares"
+	"crs-backend/internal/repositories"
+	"fmt"
 	
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func SetupRouter() *gin.Engine {
-	r := gin.Default()
+func SetupRouter(db *gorm.DB, eventRepo repositories.IEventRepository) *gin.Engine {
+	router := gin.Default()
 
-	// مسیر احراز هویت کاربران
-	authRoutes := r.Group("/auth")
+	router.Use(
+		gin.Recovery(),
+		middlewares.CORS(),
+	)
+
+	// � حذف هندلرهای غیرضروری
+	eventHandler := handlers.NewEventHandler(eventRepo)
+
+	api := router.Group("/api/v1")
 	{
-		authRoutes.POST("/register", handlers.Register)
-		authRoutes.POST("/login", handlers.Login)
+		// � گروه بندی احراز هویت
+		authGroup := api.Group("/auth")
+		{
+			authGroup.POST("/register", handlers.Register)
+			authGroup.POST("/login", handlers.Login)
+		}
+
+		// � گروه بندی کاربران با اصلاح نام r به api
+		userGroup := api.Group("/users")
+		{
+			userGroup.GET("", handlers.GetUsers)
+			userGroup.GET("/:id", handlers.GetUser)
+			userGroup.DELETE("/:id", handlers.DeleteUser)
+		}
+
+		// � گروه بندی رویدادها
+		eventsGroup := api.Group("/events")
+		{
+			eventsGroup.GET("", eventHandler.GetAllEvents)
+			eventsGroup.GET("/:id", eventHandler.GetEventByID)
+			
+			// � اعتبارسنجی JWT برای عملیات حساس
+			authorized := eventsGroup.Use(middlewares.JWTAuth())
+			{
+				authorized.POST("", eventHandler.CreateEvent)
+				authorized.PUT("/:id", eventHandler.UpdateEvent)
+				authorized.DELETE("/:id", eventHandler.DeleteEvent)
+			}
+		}
 	}
 
-	// مسیرهای مرتبط با رزرو بلیط
-	bookingRoutes := r.Group("/booking")
-	{
-		bookingRoutes.GET("/tickets", handlers.GetAvailableTickets)
-		bookingRoutes.POST("/reserve", middleware.AuthMiddleware(), handlers.CreateBooking)
-		bookingRoutes.GET("/my-bookings", middleware.AuthMiddleware(), handlers.GetUserBookings)
+	// � اندپوینت سلامت سامانه
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status": "ok",
+			"db":     fmt.Sprintf("connected: %v", db != nil),
+		})
+	})
+
+	printRoutes(router)
+
+	return router
+}
+
+func printRoutes(router *gin.Engine) {
+	routes := router.Routes()
+	fmt.Println("\n=== Registered Routes ===")
+	for _, route := range routes {
+		fmt.Printf("[%-6s] %s\n", route.Method, route.Path)
 	}
-
-	// مسیرهای مربوط به پروفایل کاربر
-	userRoutes := r.Group("/user")
-	userRoutes.Use(middleware.AuthMiddleware())
-	{
-		userRoutes.GET("/profile", handlers.GetUserProfile)
-	}
-
-	// مسیرهای مربوط به پرداخت
-	paymentRoutes := r.Group("/payment")
-	{
-		paymentRoutes.POST("/create", handlers.CreatePayment)
-		paymentRoutes.GET("/verify", handlers.VerifyPayment)
-	}
-
-	// مسیرهای مربوط به مدیریت برای ادمین
-	adminRoutes := r.Group("/admin")
-	adminRoutes.Use(middleware.AuthMiddleware(), middleware.AdminMiddleware())
-	{
-		// مدیریت کاربران
-		adminRoutes.GET("/users", handlers.GetUsers)
-		adminRoutes.GET("/user/:id", handlers.GetUser)
-		adminRoutes.DELETE("/user/:id", handlers.DeleteUser)
-
-		// مدیریت بلیط‌ها
-		adminRoutes.POST("/add-ticket", handlers.AddTicket)
-		adminRoutes.DELETE("/delete-ticket/:id", handlers.DeleteTicket)
-		adminRoutes.GET("/all-bookings", handlers.GetAllBookings)
-	}
-
-	
-
-	return r
-
-	
+	fmt.Println("========================")
 }

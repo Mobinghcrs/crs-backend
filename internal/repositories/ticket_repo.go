@@ -1,35 +1,30 @@
 package repositories
 
 import (
-	"crs-backend/internal/database"
 	"crs-backend/internal/models"
+	"gorm.io/gorm"
 )
 
-// ایجاد بلیط جدید
-func CreateTicket(ticket *models.Ticket) error {
-	return database.DB.Create(ticket).Error
+func CreateTicket(db *gorm.DB, ticket *models.Ticket) error {
+	return db.Create(ticket).Error
 }
 
-// دریافت همه بلیط‌ها
-func GetAllTickets() ([]models.Ticket, error) {
+func GetAllTickets(db *gorm.DB) ([]models.Ticket, error) {
 	var tickets []models.Ticket
-	err := database.DB.Find(&tickets).Error
+	err := db.Preload("Event").Find(&tickets).Error // اگر ارتباطی با Event وجود دارد
 	return tickets, err
 }
 
-// دریافت بلیط با ID
-func GetTicketByID(id uint) (*models.Ticket, error) {
+func GetTicketByID(db *gorm.DB, id uint) (*models.Ticket, error) {
 	var ticket models.Ticket
-	err := database.DB.First(&ticket, id).Error
+	err := db.Preload("Event").First(&ticket, id).Error
 	return &ticket, err
 }
 
-// به‌روزرسانی بلیط
-func UpdateTicket(ticket *models.Ticket) error {
-	return database.DB.Save(ticket).Error
+func UpdateTicket(db *gorm.DB, ticket *models.Ticket) error {
+	return db.Save(ticket).Error
 }
 
-// حذف بلیط
-func DeleteTicket(id uint) error {
-	return database.DB.Delete(&models.Ticket{}, id).Error
+func DeleteTicket(db *gorm.DB, id uint) error {
+	return db.Delete(&models.Ticket{}, id).Error
 }

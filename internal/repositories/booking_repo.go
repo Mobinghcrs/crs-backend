@@ -1,30 +1,37 @@
 package repositories
 
 import (
-	"crs-backend/internal/database"
 	"crs-backend/internal/models"
+	"gorm.io/gorm"
 )
 
-// ایجاد رزرو جدید
-func CreateBooking(booking *models.Booking) error {
-	return database.DB.Create(booking).Error
+func CreateBooking(db *gorm.DB, booking *models.Booking) error {
+	return db.Create(booking).Error
 }
 
-// دریافت همه رزروها
-func GetAllBookings() ([]models.Booking, error) {
+func GetAllBookings(db *gorm.DB) ([]models.Booking, error) {
 	var bookings []models.Booking
-	err := database.DB.Preload("Ticket").Find(&bookings).Error
+	err := db.Preload("Ticket").Find(&bookings).Error // اضافه شدن Preload برای ارتباط
 	return bookings, err
 }
 
-// دریافت رزرو بر اساس ID
-func GetBookingByID(id uint) (*models.Booking, error) {
+func GetBookingByID(db *gorm.DB, id uint) (*models.Booking, error) {
 	var booking models.Booking
-	err := database.DB.Preload("Ticket").First(&booking, id).Error
+	err := db.Preload("Ticket").First(&booking, id).Error // اضافه شدن Preload
 	return &booking, err
 }
 
-// لغو رزرو
-func CancelBooking(id uint) error {
-	return database.DB.Model(&models.Booking{}).Where("id = ?", id).Update("status", "canceled").Error
+func CancelBooking(db *gorm.DB, id uint) error {
+	return db.Model(&models.Booking{}).Where("id = ?", id).Update("status", "canceled").Error
+}
+func UpdateBookingStatus(db *gorm.DB, id uint, status string) error {
+	return db.Model(&models.Booking{}).
+		Where("id = ?", id).
+		Update("status", status).
+		Error
+}
+
+// افزودن تابع DeleteBooking
+func DeleteBooking(db *gorm.DB, id uint) error {
+	return db.Delete(&models.Booking{}, id).Error
 }

@@ -9,6 +9,8 @@ import (
 // مدل کاربر
 type User struct {
 	ID        uint           `gorm:"primaryKey" json:"id"`
+	Username string          `gorm:"type:text;not null;default:''"`
+	PasswordHash string 	 `gorm:"type:text;not null;default:'default_value'" json:"password_hash"`     
 	FullName  string         `gorm:"not null" json:"full_name"`
 	Email     string         `gorm:"unique;not null" json:"email"`
 	Password  string         `gorm:"not null" json:"-"`

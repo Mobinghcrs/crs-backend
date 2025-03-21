@@ -1,71 +1,55 @@
 package handlers
 
 import (
+	"net/http"
+	"strconv"
+
 	"crs-backend/internal/models"
-	"crs-backend/internal/notifications"
 	"crs-backend/internal/repositories"
 
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"fmt"
-	"strconv"
+	"gorm.io/gorm"
 )
 
-// ایجاد رزرو جدید
-func CreateBooking(c *gin.Context) {
-	var booking models.Booking
-	if err := c.ShouldBindJSON(&booking); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	// بررسی ظرفیت بلیط قبل از رزرو
-	ticket, err := repositories.GetTicketByID(booking.TicketID)
-	if err != nil || ticket.Available < booking.Quantity {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "ظرفیت کافی نیست!"})
-		return
-	}
-
-	// ثبت رزرو در دیتابیس
-	if err := repositories.CreateBooking(&booking); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در ایجاد رزرو"})
-		return
-	}
-
-	// کاهش ظرفیت بلیط پس از رزرو موفق
-	ticket.Available -= booking.Quantity
-	repositories.UpdateTicket(ticket)
-
-	c.JSON(http.StatusCreated, booking)
-		// اطلاعات کاربر (باید از توکن JWT استخراج بشه)
-		userEmail := "user@example.com"
-		userPhone := "09123456789"
-	
-		// 📩 ارسال پیامک تأیید رزرو
-		smsMessage := "رزرو شما با موفقیت انجام شد! جزئیات در ایمیل شما ارسال شد."
-		err = notifications.SendSMS(userPhone, smsMessage)  
-		if err != nil {
-			fmt.Println("❌ خطا در ارسال پیامک:", err)
-		}
-	
-		// 📧 ارسال ایمیل تأیید رزرو
-		emailSubject := "تأیید رزرو بلیط شما"
-		emailBody := "رزرو شما با موفقیت ثبت شد. لطفاً جزئیات را بررسی کنید."
-		err = notifications.SendEmail(userEmail, emailSubject, emailBody)
-		if err != nil {
-			fmt.Println("❌ خطا در ارسال ایمیل:", err)
-		}
-	
-		// پاسخ نهایی به کاربر
-		c.JSON(http.StatusOK, gin.H{"message": "رزرو با موفقیت انجام شد و اعلان‌ها ارسال شدند."})
-	
+type BookingHandler struct {
+	db *gorm.DB
 }
 
-// دریافت همه رزروها
-func GetAllBookings(c *gin.Context) {
-	bookings, err := repositories.GetAllBookings()
+// تابع سازنده جدید برای هندلر
+func NewBookingHandler(db *gorm.DB) *BookingHandler {
+	return &BookingHandler{db: db}
+}
+
+// ایجاد رزرو جدید
+func (h *BookingHandler) CreateBooking(c *gin.Context) {
+	var booking models.Booking
+	if err := c.ShouldBindJSON(&booking); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    "INVALID_BOOKING_DATA",
+			"message": "داده‌های رزرو نامعتبر است",
+		})
+		return
+	}
+
+	if err := repositories.CreateBooking(h.db, &booking); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    "BOOKING_CREATION_FAILED",
+			"message": "خطا در ایجاد رزرو",
+		})
+		return
+	}
+
+	c.JSON(http.StatusCreated, booking)
+}
+
+// دریافت تمامی رزروها
+func (h *BookingHandler) GetAllBookings(c *gin.Context) {
+	bookings, err := repositories.GetAllBookings(h.db)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در دریافت رزروها"})
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    "FETCH_BOOKINGS_FAILED",
+			"message": "خطا در دریافت لیست رزروها",
+		})
 		return
 	}
 
@@ -73,34 +57,62 @@ func GetAllBookings(c *gin.Context) {
 }
 
 // دریافت رزرو بر اساس ID
-func GetBookingByID(c *gin.Context) {
+func (h *BookingHandler) GetBookingByID(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	booking, err := repositories.GetBookingByID(uint(id))
+	
+	booking, err := repositories.GetBookingByID(h.db, uint(id))
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "رزرو پیدا نشد"})
+		c.JSON(http.StatusNotFound, gin.H{
+			"code":    "BOOKING_NOT_FOUND",
+			"message": "رزرو مورد نظر یافت نشد",
+		})
 		return
 	}
 
 	c.JSON(http.StatusOK, booking)
 }
 
-// لغو رزرو
-func CancelBooking(c *gin.Context) {
+// بروزرسانی وضعیت رزرو
+func (h *BookingHandler) UpdateBookingStatus(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	if err := repositories.CancelBooking(uint(id)); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در لغو رزرو"})
+	var request struct {
+		Status string `json:"status"`
+	}
+
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code":    "INVALID_STATUS_DATA",
+			"message": "وضعیت ارسال شده نامعتبر است",
+		})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "رزرو لغو شد"})
-}
-func GetAvailableTickets(c *gin.Context) {
-	// اینجا منطق دریافت بلیط‌ها رو اضافه کن
-	c.JSON(http.StatusOK, gin.H{"message": "لیست بلیط‌های موجود"})
+	if err := repositories.UpdateBookingStatus(h.db, uint(id), request.Status); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    "BOOKING_STATUS_UPDATE_FAILED",
+			"message": "خطا در بروزرسانی وضعیت رزرو",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "وضعیت رزرو با موفقیت بروزرسانی شد",
+	})
 }
 
-// دریافت لیست رزروهای کاربر
-func GetUserBookings(c *gin.Context) {
-	// اینجا منطق دریافت رزروهای کاربر رو اضافه کن
-	c.JSON(http.StatusOK, gin.H{"message": "لیست رزروهای کاربر"})
+// حذف رزرو
+func (h *BookingHandler) DeleteBooking(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	if err := repositories.DeleteBooking(h.db, uint(id)); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code":    "BOOKING_DELETION_FAILED",
+			"message": "خطا در حذف رزرو",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "رزرو با موفقیت حذف شد",
+	})
 }
