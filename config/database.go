@@ -1,28 +1,45 @@
-package config
+package database
 
 import (
 	"fmt"
+	"log"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
+// DB متغیر گلوبال برای پایگاه داده
 var DB *gorm.DB
 
-func ConnectDB() *gorm.DB {
-	dsn := fmt.Sprintf(
-		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
-		"localhost",   // جایگزینی با مقادیر واقعی
-		"postgres",    // کاربر دیتابیس
-		"mobin2005G", // پسورد
-		"crs_db",      // نام دیتابیس
-		"5432",        // پورت
-	)
+// Config ساختار تنظیمات پایگاه داده
+type Config struct {
+	Host     string
+	Port     string
+	User     string
+	Password string
+	DBName   string
+	SSLMode  string
+}
 
+// NewConnection تابع برای اتصال به پایگاه داده
+func NewConnection(cfg Config) (*gorm.DB, error) {
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		cfg.Host, cfg.Port, cfg.User, cfg.Password, cfg.DBName, cfg.SSLMode)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic("failed to connect database")
+		return nil, err
 	}
-
 	DB = db
-	return DB
+	return db, nil
+}
+
+// Migrate اجرای مهاجرت‌های پایگاه داده
+func Migrate(db *gorm.DB) {
+	err := db.AutoMigrate(
+		// اینجا مدل‌های پایگاه داده را اضافه کنید
+	)
+	if err != nil {
+		log.Fatalf("Migration failed: %v", err)
+	}
+	fmt.Println("Database migrated successfully!")
 }

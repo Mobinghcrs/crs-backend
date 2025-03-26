@@ -7,12 +7,17 @@ import (
 )
 
 type Flight struct {
-	gorm.Model
-	FlightNumber string    `json:"flight_number"` // شماره پرواز
-	Origin       string    `json:"origin"`        // مبدأ
-	Destination  string    `json:"destination"`   // مقصد
-	Departure    time.Time `json:"departure"`     // زمان حرکت
-	Arrival      time.Time `json:"arrival"`       // زمان رسیدن
-	Price        float64   `json:"price"`         // قیمت
-	Capacity     int       `json:"capacity"`      // ظرفیت
+	ID           uint           `gorm:"primaryKey"`
+	FlightNumber string         // شماره پرواز
+	Origin       string         // مبدا
+	Destination  string         // مقصد
+	Departure    time.Time      // زمان پرواز از مبدا
+	Arrival      time.Time      // زمان رسیدن به مقصد
+	Price        float64        // قیمت بلیط
+	Capacity     uint           // ظرفیت
+	Tickets      []Ticket       `gorm:"foreignKey:FlightID"` // تعریف رابطه یک به چند
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
+	DeletedAt    gorm.DeletedAt `gorm:"index"`
 }
+

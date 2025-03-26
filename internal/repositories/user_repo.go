@@ -33,3 +33,38 @@ func GetUserByUsername(db *gorm.DB, username string) (*models.User, error) {
 	err := db.Where("username = ?", username).First(&user).Error
 	return &user, err
 }
+
+
+type IUserRepository interface {
+    GetAll() ([]models.User, error)
+    GetByID(id string) (*models.User, error)
+    Delete(id string) error
+}
+
+type UserRepository struct {
+    db *gorm.DB
+}
+
+func NewUserRepository(db *gorm.DB) IUserRepository {
+    return &UserRepository{db: db}
+}
+
+func (r *UserRepository) GetAll() ([]models.User, error) {
+    var users []models.User
+    if err := r.db.Find(&users).Error; err != nil {
+        return nil, err
+    }
+    return users, nil
+}
+
+func (r *UserRepository) GetByID(id string) (*models.User, error) {
+    var user models.User
+    if err := r.db.First(&user, id).Error; err != nil {
+        return nil, err
+    }
+    return &user, nil
+}
+
+func (r *UserRepository) Delete(id string) error {
+    return r.db.Delete(&models.User{}, id).Error
+}

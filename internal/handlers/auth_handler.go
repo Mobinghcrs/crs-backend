@@ -4,12 +4,13 @@ import (
 	"crs-backend/internal/database"
 	"crs-backend/internal/models"
 	"crs-backend/internal/repositories"
+	
 	"net/http"
 	
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
-func Login(c *gin.Context) {
+func Login1(c *gin.Context) {
 	var credentials struct {
 		Username string `json:"username"`
 		Password string `json:"password"`
@@ -42,7 +43,7 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "ورود موفقیت آمیز"})
 }
 // 📌 ثبت نام کاربر جدید
-func Register(c *gin.Context) {
+func Register1(c *gin.Context) {
 	var user models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "داده‌های ورودی نامعتبر"})

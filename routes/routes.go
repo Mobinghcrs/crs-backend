@@ -20,6 +20,7 @@ func SetupRouter(db *gorm.DB, eventRepo repositories.IEventRepository) *gin.Engi
 
 	// � حذف هندلرهای غیرضروری
 	eventHandler := handlers.NewEventHandler(eventRepo)
+	userHandler := handlers.NewUserHandler(db)
 
 	api := router.Group("/api/v1")
 	{
@@ -33,9 +34,9 @@ func SetupRouter(db *gorm.DB, eventRepo repositories.IEventRepository) *gin.Engi
 		// � گروه بندی کاربران با اصلاح نام r به api
 		userGroup := api.Group("/users")
 		{
-			userGroup.GET("", handlers.GetUsers)
-			userGroup.GET("/:id", handlers.GetUser)
-			userGroup.DELETE("/:id", handlers.DeleteUser)
+			userGroup.GET("", userHandler.GetUsers) // ✅ تغییر به هندلر جدید
+			userGroup.GET("/:id", userHandler.GetUser)
+			userGroup.DELETE("/:id", userHandler.DeleteUser)
 		}
 
 		// � گروه بندی رویدادها

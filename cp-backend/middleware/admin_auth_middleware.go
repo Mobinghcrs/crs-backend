@@ -1,21 +1,20 @@
 package middleware
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
+    "net/http"
+    "github.com/gin-gonic/gin"
 )
 
-// AdminAuthMiddleware بررسی می‌کند که کاربر مدیر باشد
+// بررسی نقش ادمین برای درخواست‌های کنترل پنل
 func AdminAuthMiddleware() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		// در اینجا بررسی JWT و نقش کاربر انجام می‌شود
-		admin := c.GetHeader("X-Admin")
-		if admin != "true" {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
-			c.Abort()
-			return
-		}
+    return func(c *gin.Context) {
+        adminHeader := c.GetHeader("X-Admin")
+        if adminHeader != "true" {
+            c.JSON(http.StatusForbidden, gin.H{"error": "دسترسی غیرمجاز"})
+            c.Abort()
+            return
+        }
 
-		c.Next()
-	}
+        c.Next()
+    }
 }
