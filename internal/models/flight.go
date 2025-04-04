@@ -1,19 +1,23 @@
 package models
 
 import (
-    "time"
-    "gorm.io/gorm"
+	"time"
+
+	"gorm.io/gorm"
 )
 
 type Flight struct {
-	gorm.Model
-	FlightNumber   string    `gorm:"uniqueIndex;size:20" json:"flight_number"`
-	Origin         string    `gorm:"size:100" json:"origin"`
-	Destination    string    `gorm:"size:100" json:"destination"`
-	DepartureTime  time.Time `json:"departure_time"`
-	Capacity       int       `json:"capacity"`
-	AvailableSeats int       `json:"available_seats"`
-	BasePrice      float64   `json:"base_price"`
-	Airline        string    `gorm:"size:50" json:"airline"`
-	Aircraft       string    `gorm:"size:50" json:"aircraft"`
+	ID           uint           `gorm:"primaryKey"`
+	FlightNumber string         // شماره پرواز
+	Origin       string         // مبدا
+	Destination  string         // مقصد
+	Departure    time.Time      // زمان پرواز از مبدا
+	Arrival      time.Time      // زمان رسیدن به مقصد
+	Price        float64        // قیمت بلیط
+	Capacity     uint           // ظرفیت
+	Tickets      []Ticket       `gorm:"foreignKey:FlightID"` // تعریف رابطه یک به چند
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
+	DeletedAt    gorm.DeletedAt `gorm:"index"`
 }
+
