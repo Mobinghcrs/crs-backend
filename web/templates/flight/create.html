@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>ایجاد پرواز جدید</title>
+    <link rel="stylesheet" href="/static/css/output.css">
+    <!-- مسیرهای استاتیک رو اصلاح میکنیم -->
+    <script type="module" src="/static/js/company/script.js"></script>
+</head>
+
+<body>
+    <div class="flex font-Kalameh">
+        <divcreate.html
+            class="w-[16.5rem] select-none bg-[#1D1B20] border-l shadow-lg lg:shadow-none z-[9999] lg:z-0 h-screen fixed hover:overflow-y-auto overflow-y-hidden transition-all duration-500 ease-out">
+            <div class="relative flex gap-2 justify-center items-center bg-white h-[4rem]"><a aria-current="page"
+                    href="/" class="router-link-active router-link-exact-active text-[#0A77FF] font-bold text-[2rem]">
+                    CP </a><span class="text-[#1D1B20]"> (Control Panel) </span>
+                <div class="absolute lg:hidden top-5 cursor-pointer left-5"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="icon"
+                        width="1em" height="1em" viewBox="0 0 256 256">
+                        <path fill="currentColor"
+                            d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z">
+                        </path>
+                    </svg></div>
+            </div>
+            <p class="px-5 text-[#938F96] mb-5 mt-6">منو</p>
+            <div class="px-5 text-white">
+                <ul class="space-y-3"><!--[-->
+                    <li class="group">
+                        <div id="fly_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.03001 21.69L11.36 19.73C11.71 19.43 12.29 19.43 12.64 19.73L14.97 21.69C15.51 21.96 16.17 21.69 16.37 21.11L16.81 19.78C16.92 19.46 16.81 18.99 16.57 18.75L14.3 16.47C14.13 16.31 14 15.99 14 15.76V12.91C14 12.49 14.31 12.29 14.7 12.45L19.61 14.57C20.38 14.9 21.01 14.49 21.01 13.65V12.36C21.01 11.69 20.51 10.92 19.89 10.66L14.3 8.25001C14.14 8.18001 14 7.97001 14 7.79001V4.79001C14 3.85001 13.31 2.74001 12.47 2.31001C12.17 2.16001 11.82 2.16001 11.52 2.31001C10.68 2.74001 9.99001 3.86001 9.99001 4.80001V7.80001C9.99001 7.98001 9.85001 8.19001 9.69001 8.26001L4.11001 10.67C3.49001 10.92 2.99001 11.69 2.99001 12.36V13.65C2.99001 14.49 3.62001 14.9 4.39001 14.57L9.30001 12.45C9.68001 12.28 10 12.49 10 12.91V15.76C10 15.99 9.87001 16.31 9.71001 16.47L7.44001 18.75C7.20001 18.99 7.09001 19.45 7.20001 19.78L7.64001 21.11C7.82001 21.69 8.48001 21.97 9.03001 21.69Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg><span class="text-[#605D64]">پرواز</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="fly" class="pr-4 space-y-3 pt-3 hidden group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/fly/ticket.html"
+                                    class="">بلیط ها</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/fly/hand.html"
+                                    class="">پرواز های دستی</a>
+                            </li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/fly/create.html"
+                                    class="">ایجاد پرواز</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22 6V8.42C22 10 21 11 19.42 11H16V4.01C16 2.9 16.91 2 18.02 2C19.11 2.01 20.11 2.45 20.83 3.17C21.55 3.9 22 4.9 22 6Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path
+                                        d="M2 7V21C2 21.83 2.94 22.3 3.6 21.8L5.31 20.52C5.71 20.22 6.27 20.26 6.63 20.62L8.29 22.29C8.68 22.68 9.32 22.68 9.71 22.29L11.39 20.61C11.74 20.26 12.3 20.22 12.69 20.52L14.4 21.8C15.06 22.29 16 21.82 16 21V4C16 2.9 16.9 2 18 2H7H6C3 2 2 3.79 2 6V7Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M9 13.01H12" stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M9 9.01001H12" stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M5.99561 13H6.00459" stroke="#938F96" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M5.99561 9H6.00459" stroke="#938F96" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg><a href="/transaction" class=""><span class="text-[#605D64]">تراکنش ها</span></a>
+                            </div><!---->
+                        </div><!---->
+                    </li>
+                    <li class="group">
+                        <div id="support_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="18" height="22" viewBox="0 0 18 22"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16 13V17H14V13H16ZM4 13V17H3C2.45 17 2 16.55 2 16V13H4ZM9 0C4.03 0 0 4.03 0 9V16C0 17.66 1.34 19 3 19H6V11H2V9C2 5.13 5.13 2 9 2C12.87 2 16 5.13 16 9V11H12V19H16V20H9V22H15C16.66 22 18 20.66 18 19V9C18 4.03 13.97 0 9 0Z"
+                                        fill="#605D64"></path>
+                                </svg><span class="text-[#605D64]">پشتیبانی</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="support" class="pr-4 space-y-3 pt-3 hidden group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/product/index.html"
+                                    class="">درباره ما</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="company_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 22H22" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M17 2H7C4 2 3 3.79 3 6V22H21V6C21 3.79 20 2 17 2Z" stroke="#938F96"
+                                        stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M7 16.5H10" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M14 16.5H17" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M7 12H10" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M14 12H17" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M7 7.5H10" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="M14 7.5H17" stroke="#938F96" stroke-width="1.5" stroke-miterlimit="10"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg><span class="text-[#605D64]">کمپانی ها</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="company" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/company/index.html"
+                                    class="">لیست کمپانی ها</a>
+                            </li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/company/create.html"
+                                    class="">ساخت کمپانی
+                                    جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="site_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8 16.75H5.43C2.74 16.75 1.25 15.27 1.25 12.57V5.43C1.25 2.74 2.73 1.25 5.43 1.25H10C12.69 1.25 14.18 2.73 14.18 5.43C14.18 5.84 13.84 6.18 13.43 6.18C13.02 6.18 12.68 5.84 12.68 5.43C12.68 3.55 11.88 2.75 10 2.75H5.43C3.55 2.75 2.75 3.55 2.75 5.43V12.57C2.75 14.45 3.55 15.25 5.43 15.25H8C8.41 15.25 8.75 15.59 8.75 16C8.75 16.41 8.41 16.75 8 16.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M18.57 22.75H14C11.31 22.75 9.82001 21.27 9.82001 18.57V11.43C9.82001 8.74 11.3 7.25 14 7.25H18.57C21.26 7.25 22.75 8.73 22.75 11.43V18.57C22.75 21.27 21.27 22.75 18.57 22.75ZM14 8.75C12.12 8.75 11.32 9.55 11.32 11.43V18.57C11.32 20.45 12.12 21.25 14 21.25H18.57C20.45 21.25 21.25 20.45 21.25 18.57V11.43C21.25 9.55 20.45 8.75 18.57 8.75H14Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M18.13 15.75H14.88C14.47 15.75 14.13 15.41 14.13 15C14.13 14.59 14.47 14.25 14.88 14.25H18.13C18.54 14.25 18.88 14.59 18.88 15C18.88 15.41 18.54 15.75 18.13 15.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M16.5 17.3799C16.09 17.3799 15.75 17.0399 15.75 16.6299V13.3799C15.75 12.9699 16.09 12.6299 16.5 12.6299C16.91 12.6299 17.25 12.9699 17.25 13.3799V16.6299C17.25 17.0399 16.91 17.3799 16.5 17.3799Z"
+                                        fill="#938F96"></path>
+                                </svg><span class="text-[#605D64]">سایت ها</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="site" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/sites/index.html"
+                                    class="">لیست سایت ها</a>
+                            </li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/sites/create.html"
+                                    class="">ساخت سایت
+                                    جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="user_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.15962 11.62C9.12962 11.62 9.10962 11.62 9.07962 11.62C9.02962 11.61 8.95962 11.61 8.89962 11.62C5.99962 11.53 3.80962 9.25 3.80962 6.44C3.80962 3.58 6.13962 1.25 8.99962 1.25C11.8596 1.25 14.1896 3.58 14.1896 6.44C14.1796 9.25 11.9796 11.53 9.18962 11.62C9.17962 11.62 9.16962 11.62 9.15962 11.62ZM8.99962 2.75C6.96962 2.75 5.30962 4.41 5.30962 6.44C5.30962 8.44 6.86962 10.05 8.85962 10.12C8.91962 10.11 9.04962 10.11 9.17962 10.12C11.1396 10.03 12.6796 8.42 12.6896 6.44C12.6896 4.41 11.0296 2.75 8.99962 2.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M16.5396 11.75C16.5096 11.75 16.4796 11.75 16.4496 11.74C16.0396 11.78 15.6196 11.49 15.5796 11.08C15.5396 10.67 15.7896 10.3 16.1996 10.25C16.3196 10.24 16.4496 10.24 16.5596 10.24C18.0196 10.16 19.1596 8.96 19.1596 7.49C19.1596 5.97 17.9296 4.74 16.4096 4.74C15.9996 4.75 15.6596 4.41 15.6596 4C15.6596 3.59 15.9996 3.25 16.4096 3.25C18.7496 3.25 20.6596 5.16 20.6596 7.5C20.6596 9.8 18.8596 11.66 16.5696 11.75C16.5596 11.75 16.5496 11.75 16.5396 11.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M9.16961 22.55C7.20961 22.55 5.23961 22.05 3.74961 21.05C2.35961 20.13 1.59961 18.87 1.59961 17.5C1.59961 16.13 2.35961 14.86 3.74961 13.93C6.74961 11.94 11.6096 11.94 14.5896 13.93C15.9696 14.85 16.7396 16.11 16.7396 17.48C16.7396 18.85 15.9796 20.12 14.5896 21.05C13.0896 22.05 11.1296 22.55 9.16961 22.55ZM4.57961 15.19C3.61961 15.83 3.09961 16.65 3.09961 17.51C3.09961 18.36 3.62961 19.18 4.57961 19.81C7.06961 21.48 11.2696 21.48 13.7596 19.81C14.7196 19.17 15.2396 18.35 15.2396 17.49C15.2396 16.64 14.7096 15.82 13.7596 15.19C11.2696 13.53 7.06961 13.53 4.57961 15.19Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M18.1004 20.0546L18.1004 20.0543C18.0728 19.9131 18.1599 19.7809 18.2962 19.7485C18.984 19.6059 19.6348 19.3297 20.1537 18.927C20.8111 18.4299 21.2296 17.756 21.2296 16.99C21.2296 16.2254 20.8125 15.5508 20.1625 15.0622C19.653 14.6693 19.0332 14.4046 18.332 14.2428L18.332 14.2428L18.3294 14.2422C18.1968 14.2124 18.1078 14.0779 18.1377 13.9385C18.1682 13.8062 18.303 13.7178 18.4424 13.7484L18.5496 13.26L18.4417 13.7482C19.239 13.9244 19.9195 14.2362 20.4644 14.6561L20.4644 14.6561L20.4689 14.6595C21.2908 15.2781 21.7296 16.1277 21.7296 16.99C21.7296 17.8491 21.2837 18.7009 20.4562 19.3326L20.4562 19.3326L20.4535 19.3347C19.8997 19.7634 19.1927 20.0833 18.4027 20.2395L18.3716 20.2457L18.3587 20.2499L18.3553 20.25L18.3396 20.25C18.2203 20.25 18.1231 20.1712 18.1004 20.0546ZM18.2196 14.73C17.8196 14.64 17.5596 14.24 17.6496 13.83L18.2196 14.73Z"
+                                        fill="#292D32" stroke="#938F96"></path>
+                                </svg><span class="text-[#605D64]">یوزر ها</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="user" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/users/index.html"
+                                    class="">لیست یوزر ها </a>
+                            </li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/users/create.html"
+                                    class="">ساخت یوزر
+                                    جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="gateway_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17 20.75H12C11.59 20.75 11.25 20.41 11.25 20C11.25 19.59 11.59 19.25 12 19.25H17C19.86 19.25 21.25 17.86 21.25 15V9C21.25 6.14 19.86 4.75 17 4.75H7C4.14 4.75 2.75 6.14 2.75 9V11C2.75 11.41 2.41 11.75 2 11.75C1.59 11.75 1.25 11.41 1.25 11V9C1.25 5.35 3.35 3.25 7 3.25H17C20.65 3.25 22.75 5.35 22.75 9V15C22.75 18.65 20.65 20.75 17 20.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M12 15.25C10.21 15.25 8.75 13.79 8.75 12C8.75 10.21 10.21 8.75 12 8.75C13.79 8.75 15.25 10.21 15.25 12C15.25 13.79 13.79 15.25 12 15.25ZM12 10.25C11.04 10.25 10.25 11.04 10.25 12C10.25 12.96 11.04 13.75 12 13.75C12.96 13.75 13.75 12.96 13.75 12C13.75 11.04 12.96 10.25 12 10.25Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M18.5 15.25C18.09 15.25 17.75 14.91 17.75 14.5V9.5C17.75 9.09 18.09 8.75 18.5 8.75C18.91 8.75 19.25 9.09 19.25 9.5V14.5C19.25 14.91 18.91 15.25 18.5 15.25Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M8.5 18.69C8.09 18.69 7.75 18.35 7.75 17.94V16.66C7.75 16.44 7.57003 16.25 7.34003 16.25H2C1.59 16.25 1.25 15.91 1.25 15.5C1.25 15.09 1.59 14.75 2 14.75H7.34003C8.39003 14.75 9.25 15.61 9.25 16.66V17.94C9.25 18.35 8.91 18.69 8.5 18.69Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M3.21994 17.4699C3.02994 17.4699 2.83997 17.4 2.68997 17.25L1.46994 16.03C1.17994 15.74 1.17994 15.2599 1.46994 14.9699L2.68997 13.75C2.97997 13.46 3.45997 13.46 3.74997 13.75C4.03997 14.04 4.03997 14.52 3.74997 14.81L3.05997 15.5L3.74997 16.19C4.03997 16.48 4.03997 16.96 3.74997 17.25C3.59997 17.4 3.40994 17.4699 3.21994 17.4699Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M8.5 21.5301H3.15997C2.10997 21.5301 1.25 20.6701 1.25 19.6201V18.3401C1.25 17.9301 1.59 17.5901 2 17.5901C2.41 17.5901 2.75 17.9301 2.75 18.3401V19.6201C2.75 19.8401 2.92997 20.0301 3.15997 20.0301H8.5C8.91 20.0301 9.25 20.3701 9.25 20.7801C9.25 21.1901 8.91 21.5301 8.5 21.5301Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M7.27976 22.75C7.08976 22.75 6.89973 22.68 6.74973 22.53C6.45973 22.24 6.45973 21.7599 6.74973 21.4699L7.43973 20.78L6.74973 20.09C6.45973 19.8 6.45973 19.32 6.74973 19.03C7.03973 18.74 7.51972 18.74 7.80972 19.03L9.02976 20.25C9.31976 20.54 9.31976 21.02 9.02976 21.31L7.80972 22.53C7.66972 22.68 7.46976 22.75 7.27976 22.75Z"
+                                        fill="#938F96"></path>
+                                </svg><span class="text-[#605D64]">درگاه پرداخت</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="gateway" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/"
+                                    class="router-link-active router-link-exact-active">لیست درگاه های پرداخت</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/payment/create.html"
+                                    class="">ساخت درگاه
+                                    پرداخت جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="supplier_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14.7 22.75H9.29999C4.35999 22.75 2.25999 20.64 2.25999 15.71V11.22C2.25999 10.81 2.59999 10.47 3.00999 10.47C3.41999 10.47 3.75999 10.81 3.75999 11.22V15.71C3.75999 19.8 5.20999 21.25 9.29999 21.25H14.69C18.78 21.25 20.23 19.8 20.23 15.71V11.22C20.23 10.81 20.57 10.47 20.98 10.47C21.39 10.47 21.73 10.81 21.73 11.22V15.71C21.74 20.64 19.63 22.75 14.7 22.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M12 12.75C10.9 12.75 9.9 12.32 9.19 11.53C8.48 10.74 8.15 9.71 8.26 8.61L8.93 1.93C8.97 1.55 9.29 1.25 9.68 1.25H14.35C14.74 1.25 15.06 1.54 15.1 1.93L15.77 8.61C15.88 9.71 15.55 10.74 14.84 11.53C14.1 12.32 13.1 12.75 12 12.75ZM10.35 2.75L9.75 8.76C9.68 9.43 9.88 10.06 10.3 10.52C11.15 11.46 12.85 11.46 13.7 10.52C14.12 10.05 14.32 9.42 14.25 8.76L13.65 2.75H10.35Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M18.31 12.75C16.28 12.75 14.47 11.11 14.26 9.09L13.56 2.08C13.54 1.87 13.61 1.66 13.75 1.5C13.89 1.34 14.09 1.25 14.31 1.25H17.36C20.3 1.25 21.67 2.48 22.08 5.5L22.36 8.28C22.48 9.46 22.12 10.58 21.35 11.43C20.58 12.28 19.5 12.75 18.31 12.75ZM15.14 2.75L15.76 8.94C15.89 10.19 17.05 11.25 18.31 11.25C19.07 11.25 19.75 10.96 20.24 10.43C20.72 9.9 20.94 9.19 20.87 8.43L20.59 5.68C20.28 3.42 19.55 2.75 17.36 2.75H15.14Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M5.64001 12.75C4.45001 12.75 3.37001 12.28 2.60001 11.43C1.83001 10.58 1.47001 9.46 1.59001 8.28L1.86001 5.53C2.28001 2.48 3.65001 1.25 6.59001 1.25H9.64001C9.85001 1.25 10.05 1.34 10.2 1.5C10.35 1.66 10.41 1.87 10.39 2.08L9.69001 9.09C9.48001 11.11 7.67001 12.75 5.64001 12.75ZM6.59001 2.75C4.40001 2.75 3.67001 3.41 3.35001 5.7L3.08001 8.43C3.00001 9.19 3.23001 9.9 3.71001 10.43C4.19001 10.96 4.87001 11.25 5.64001 11.25C6.90001 11.25 8.07001 10.19 8.19001 8.94L8.81001 2.75H6.59001Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M14.5 22.75H9.5C9.09 22.75 8.75 22.41 8.75 22V19.5C8.75 17.4 9.9 16.25 12 16.25C14.1 16.25 15.25 17.4 15.25 19.5V22C15.25 22.41 14.91 22.75 14.5 22.75ZM10.25 21.25H13.75V19.5C13.75 18.24 13.26 17.75 12 17.75C10.74 17.75 10.25 18.24 10.25 19.5V21.25Z"
+                                        fill="#938F96"></path>
+                                </svg><span class="text-[#605D64]">تامین کننده ها</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="supplier" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/index.html"
+                                    class="">لیست تامین کننده
+                                    ها</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/create.html"
+                                    class="">ساخت تامین
+                                    کننده جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="wallet_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 22H17C20 22 22 20 22 17V12C22 9.3 20.3 7.3 17.8 7C17.6 7 17.3 7 17 7H7C6.7 7 6.5 6.99998 6.2 7.09998C3.6 7.39998 2 9.3 2 12C2 12.3 2 12.7 2 13"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path
+                                        d="M17.8 6.99995C17.6 6.99995 17.3 6.99995 17 6.99995H7C6.7 6.99995 6.5 6.99993 6.2 7.09993C6.3 6.79993 6.5 6.59994 6.8 6.29994L10 2.99995C11.4 1.59995 13.6 1.59995 15 2.99995L16.8 4.79994C17.4 5.39994 17.7 6.19995 17.8 6.99995Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M22 12.5H19C17.9 12.5 17 13.4 17 14.5C17 15.6 17.9 16.5 19 16.5H22"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path
+                                        d="M5.80157 21.4C7.57157 21.4 9.00156 19.97 9.00156 18.2C9.00156 16.43 7.57157 15 5.80157 15C4.03157 15 2.60156 16.43 2.60156 18.2C2.60156 19.97 4.03157 21.4 5.80157 21.4Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M2 22L3 21" stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg><span class="text-[#605D64]">کیف پول</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="wallet" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/index.html"
+                                    class="">لیست تامین کننده
+                                    ها</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/create.html"
+                                    class="">ساخت تامین
+                                    کننده جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="marketing_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14.7 22.75H9.29999C4.35999 22.75 2.25999 20.64 2.25999 15.71V11.22C2.25999 10.81 2.59999 10.47 3.00999 10.47C3.41999 10.47 3.75999 10.81 3.75999 11.22V15.71C3.75999 19.8 5.20999 21.25 9.29999 21.25H14.69C18.78 21.25 20.23 19.8 20.23 15.71V11.22C20.23 10.81 20.57 10.47 20.98 10.47C21.39 10.47 21.73 10.81 21.73 11.22V15.71C21.74 20.64 19.63 22.75 14.7 22.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M12 12.75C10.9 12.75 9.9 12.32 9.19 11.53C8.48 10.74 8.15 9.71 8.26 8.61L8.93 1.93C8.97 1.55 9.29 1.25 9.68 1.25H14.35C14.74 1.25 15.06 1.54 15.1 1.93L15.77 8.61C15.88 9.71 15.55 10.74 14.84 11.53C14.1 12.32 13.1 12.75 12 12.75ZM10.35 2.75L9.75 8.76C9.68 9.43 9.88 10.06 10.3 10.52C11.15 11.46 12.85 11.46 13.7 10.52C14.12 10.05 14.32 9.42 14.25 8.76L13.65 2.75H10.35Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M18.31 12.75C16.28 12.75 14.47 11.11 14.26 9.09L13.56 2.08C13.54 1.87 13.61 1.66 13.75 1.5C13.89 1.34 14.09 1.25 14.31 1.25H17.36C20.3 1.25 21.67 2.48 22.08 5.5L22.36 8.28C22.48 9.46 22.12 10.58 21.35 11.43C20.58 12.28 19.5 12.75 18.31 12.75ZM15.14 2.75L15.76 8.94C15.89 10.19 17.05 11.25 18.31 11.25C19.07 11.25 19.75 10.96 20.24 10.43C20.72 9.9 20.94 9.19 20.87 8.43L20.59 5.68C20.28 3.42 19.55 2.75 17.36 2.75H15.14Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M5.64001 12.75C4.45001 12.75 3.37001 12.28 2.60001 11.43C1.83001 10.58 1.47001 9.46 1.59001 8.28L1.86001 5.53C2.28001 2.48 3.65001 1.25 6.59001 1.25H9.64001C9.85001 1.25 10.05 1.34 10.2 1.5C10.35 1.66 10.41 1.87 10.39 2.08L9.69001 9.09C9.48001 11.11 7.67001 12.75 5.64001 12.75ZM6.59001 2.75C4.40001 2.75 3.67001 3.41 3.35001 5.7L3.08001 8.43C3.00001 9.19 3.23001 9.9 3.71001 10.43C4.19001 10.96 4.87001 11.25 5.64001 11.25C6.90001 11.25 8.07001 10.19 8.19001 8.94L8.81001 2.75H6.59001Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M14.5 22.75H9.5C9.09 22.75 8.75 22.41 8.75 22V19.5C8.75 17.4 9.9 16.25 12 16.25C14.1 16.25 15.25 17.4 15.25 19.5V22C15.25 22.41 14.91 22.75 14.5 22.75ZM10.25 21.25H13.75V19.5C13.75 18.24 13.26 17.75 12 17.75C10.74 17.75 10.25 18.24 10.25 19.5V21.25Z"
+                                        fill="#938F96"></path>
+                                </svg><span class="text-[#605D64]">بازاریاب ها</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="marketing" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/index.html"
+                                    class="">لیست تامین کننده
+                                    ها</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/create.html"
+                                    class="">ساخت تامین
+                                    کننده جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="accounting_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 22H17C20 22 22 20 22 17V12C22 9.3 20.3 7.3 17.8 7C17.6 7 17.3 7 17 7H7C6.7 7 6.5 6.99998 6.2 7.09998C3.6 7.39998 2 9.3 2 12C2 12.3 2 12.7 2 13"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path
+                                        d="M17.8 6.99995C17.6 6.99995 17.3 6.99995 17 6.99995H7C6.7 6.99995 6.5 6.99993 6.2 7.09993C6.3 6.79993 6.5 6.59994 6.8 6.29994L10 2.99995C11.4 1.59995 13.6 1.59995 15 2.99995L16.8 4.79994C17.4 5.39994 17.7 6.19995 17.8 6.99995Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M22 12.5H19C17.9 12.5 17 13.4 17 14.5C17 15.6 17.9 16.5 19 16.5H22"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path
+                                        d="M5.80157 21.4C7.57157 21.4 9.00156 19.97 9.00156 18.2C9.00156 16.43 7.57157 15 5.80157 15C4.03157 15 2.60156 16.43 2.60156 18.2C2.60156 19.97 4.03157 21.4 5.80157 21.4Z"
+                                        stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M2 22L3 21" stroke="#938F96" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg><span class="text-[#605D64]">حسابداری</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="accounting" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/index.html"
+                                    class="">لیست تامین کننده
+                                    ها</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/create.html"
+                                    class="">ساخت تامین
+                                    کننده جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="group">
+                        <div id="receive_parent"
+                            class="flex px-5 py-3 cursor-pointer rounded-t-md hover:bg-white/10 transition-all hover:transition-all items-center justify-between">
+                            <div class="flex gap-2 items-center"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22 6.31006H12C11.59 6.31006 11.25 5.97006 11.25 5.56006C11.25 5.15006 11.59 4.81006 12 4.81006H22C22.41 4.81006 22.75 5.15006 22.75 5.56006C22.75 5.98006 22.41 6.31006 22 6.31006Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M19.7798 11.25H14.2298C12.0398 11.25 11.2598 10.48 11.2598 8.3V4.2C11.2598 2.02 12.0398 1.25 14.2298 1.25H19.7798C21.9698 1.25 22.7498 2.02 22.7498 4.2V8.31C22.7498 10.48 21.9698 11.25 19.7798 11.25ZM14.2198 2.75C12.8598 2.75 12.7498 2.86 12.7498 4.2V8.31C12.7498 9.65 12.8598 9.76 14.2198 9.76H19.7697C21.1297 9.76 21.2397 9.65 21.2397 8.31V4.2C21.2397 2.86 21.1297 2.75 19.7697 2.75H14.2198Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M12 17.8101H2C1.59 17.8101 1.25 17.4701 1.25 17.0601C1.25 16.6501 1.59 16.3101 2 16.3101H12C12.41 16.3101 12.75 16.6501 12.75 17.0601C12.75 17.4801 12.41 17.8101 12 17.8101Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M9.77975 22.75H4.22977C2.03977 22.75 1.25977 21.98 1.25977 19.8V15.7C1.25977 13.52 2.03977 12.75 4.22977 12.75H9.77975C11.9698 12.75 12.7498 13.52 12.7498 15.7V19.81C12.7498 21.98 11.9698 22.75 9.77975 22.75ZM4.21976 14.25C2.85976 14.25 2.74976 14.36 2.74976 15.7V19.81C2.74976 21.15 2.85976 21.26 4.21976 21.26H9.76974C11.1297 21.26 11.2397 21.15 11.2397 19.81V15.7C11.2397 14.36 11.1297 14.25 9.76974 14.25H4.21976Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M15.0002 22.75C14.7302 22.75 14.4802 22.6 14.3502 22.37C14.2202 22.13 14.2202 21.85 14.3602 21.61L15.4102 19.86C15.6202 19.51 16.0802 19.39 16.4402 19.6C16.8002 19.81 16.9102 20.27 16.7002 20.63L16.4302 21.08C19.1902 20.43 21.2602 17.95 21.2602 14.99C21.2602 14.58 21.6002 14.24 22.0102 14.24C22.4202 14.24 22.7602 14.58 22.7602 14.99C22.7502 19.27 19.2702 22.75 15.0002 22.75Z"
+                                        fill="#938F96"></path>
+                                    <path
+                                        d="M2 9.75C1.59 9.75 1.25 9.41 1.25 9C1.25 4.73 4.73 1.25 9 1.25C9.27 1.25 9.51999 1.4 9.64999 1.63C9.77999 1.87 9.78001 2.15 9.64001 2.39L8.59 4.14C8.38 4.49 7.92 4.61 7.56 4.4C7.2 4.19 7.08999 3.73 7.29999 3.37L7.57001 2.92C4.81001 3.57 2.73999 6.05 2.73999 9.01C2.74999 9.41 2.41 9.75 2 9.75Z"
+                                        fill="#938F96"></path>
+                                </svg><span class="text-[#605D64]">دریافت و پرداخت</span></div><svg
+                                class="transition-all duration-500 text-[#605D64] rotate-180"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M12.707 15.707a1 1 0 0 1-1.414 0L5.636 10.05A1 1 0 1 1 7.05 8.636l4.95 4.95l4.95-4.95a1 1 0 0 1 1.414 1.414z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <ul id="receive" class="pr-4 hidden space-y-3 pt-3 group-hover:bg-white/10 rounded-b-md">
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/index.html"
+                                    class="">لیست تامین کننده
+                                    ها</a></li>
+                            <li class="text-[#605D64] hover:text-white transition-all"><a href="/supplier/create.html"
+                                    class="">ساخت تامین
+                                    کننده جدید</a></li>
+                        </ul>
+                    </li><!--]-->
+                </ul>
+            </div>
+        </div>
+
+        <div class="lg:mr-[16.5rem] flex flex-col min-h-screen w-full transition-all duration-500 ease-out">
+            <div class="flex shadow items-center sticky top-0 bg-gray-50 z-50 w-full justify-between px-8 h-[4rem]"><svg
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                    role="img" class="icon cursor-pointer lg:!hidden" width="30px" height="30px" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"></path>
+                </svg>
+                <div class="flex items-end gap-1"><span>...</span> / <span class="text-[#938F96]">حسابداری</span> /
+                    <span>لیست حساب ها</span>
+                </div>
+                <div class="flex items-center gap-10">
+                    <div class="bg-[#F7F8F9] rounded w-[19.5rem] h-[2.5rem] flex justify-around items-center"><img
+                            src="/icon/search-normal.svg" alt=""><input type="text" class="outline-none bg-transparent"
+                            placeholder="جستجو در سیستم..."></div>
+                    <div class="flex border rounded-full px-4 py-1 items-center gap-2.5"><img src="/icon/Vector.svg"
+                            alt=""><span>Hossein Ahmadiyan</span><img src="/icon/user.svg" alt=""></div>
+                </div>
+            </div><!--[-->
+            <!-- Modal start -->
+            <div class="hidden modal justify-center z-50 items-center h-screen w-screen fixed top-0 left-0 bg-black/50">
+                <div class="w-[34.5rem] inner-modal pt-12 relative shadow bg-gray-100 rounded-xl overflow-hidden">
+                    <!-- icon -->
+                    <div
+                        class="absolute top-4 flex items-center gap-5 right-4 text-xl cursor-pointer transition-all hover:transition-all duration-500">
+                        <img src="/icon/close.svg" alt=""><span class="font-bold">آیا میخواهید پرواز ساخته شود؟</span>
+                    </div><!-- modal content -->
+                    <p class="text-sm px-5 pb-5"> بعد از ساخت پرواز میتوانید آنرا ویرایش یا حذف کنید. </p>
+                    <div class="px-5 py-2.5">
+                        <div class="flex items-center justify-end gap-3"><button class="btn-outline">انصراف</button>
+                            <button class="btn-primary">ساخت پرواز</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal end -->
+            <section class="flex flex-col bg-white p-6 gap-5">
+                <div class="flex itemsc-center gap-3"><img src="/icon/flash-right.svg" alt="...">
+                    <h5 class="text-[1.625rem] font-semibold">ایجاد پرواز</h5>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <h2 class="font-semibold mt-4">
+                        مسیر
+                    </h2>
+                    <div class="grid gap-2 grid-cols-2">
+                        <div class="flex flex-col w-full gap-2"><label for="origin">مبدا</label><input type="text"
+                                id="origin" class="input-style" placeholder="متن ورودی"></div>
+                        <div class="flex flex-col w-full gap-2"><label for="dest">مقصد</label><input type="text"
+                                id="dest" class="input-style" placeholder="متن ورودی"></div>
+                    </div>
+                    <h2 class="font-semibold mt-4">تاریخ</h2>
+                    <div class="grid gap-2 grid-cols-2">
+                        <div class="flex flex-col w-full gap-2"><label for="go_date"
+                                class="text-[#605D64] text-xs">تاریخ رفت</label><input type="text" id="go_date"
+                                class="input-style" placeholder="متن ورودی"></div>
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">تاریخ رسیدن</label><input type="text" id="achieve_date"
+                                class="input-style" placeholder="متن ورودی"></div>
+                    </div>
+                    <h2 class="font-semibold mt-4">روز های هفته</h2>
+                    <div class="grid gap-2 grid-cols-7">
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="saturday" id="saturday">
+                            <label for="saturday" class="text-[#605D64]">شنبه</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="sunday" id="sunday">
+                            <label for="sunday" class="text-[#605D64]">یک شنبه</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="monday" id="monday">
+                            <label for="monday" class="text-[#605D64]">دو شنبه</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="tuesday" id="tuesday">
+                            <label for="tuesday" class="text-[#605D64]">سه شنبه</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="wednesday" id="wednesday">
+                            <label for="wednesday" class="text-[#605D64]">چهار شنبه</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="thursday" id="thursday">
+                            <label for="thursday" class="text-[#605D64]">پنج شنبه</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="friday" id="friday">
+                            <label for="friday" class="text-[#605D64]">جمعه</label>
+                        </div>
+                    </div>
+                    <h2 class="font-semibold mt-4">کمیسیون</h2>
+                    <div class="grid gap-2 grid-cols-2">
+                        <div class="flex flex-col w-full gap-2"><label for="username"
+                                class="text-[#605D64] text-xs">کمیسیون به درصد</label>
+                            <div class="flex border rounded justify-between px-3.5 py-3 items-center"><input type="text"
+                                    value="" id="username" class="outline-none w-full"
+                                    placeholder="متن ورودی"><span>%</span></div>
+                        </div>
+                        <div class="flex flex-col w-full gap-2"><label for="username"
+                                class="text-[#605D64] text-xs">کمیسیون به مقدار</label>
+                            <div class="flex border rounded justify-between px-3.5 py-3 items-center"><input type="text"
+                                    value="" id="username" class="outline-none w-full"
+                                    placeholder="متن ورودی"><span>ریال</span></div>
+                        </div>
+                    </div>
+                    <h2 class="font-semibold mt-4">اطلاعات پرواز</h2>
+                    <div class="grid gap-2 grid-cols-4">
+                        <div class="flex flex-col w-full gap-2">
+                            <label for="company" class="text-[#605D64] text-xs">شرکت هواپیمایی</label>
+                            <div class="parent-select">
+                                <select class="input-select" placeholder="متن ورودی" name="company" id="company">
+                                    <option value="test">شرکت هواپیمایی</option>
+                                </select>
+
+                                <img src="/public/icon/Vector.svg" alt="" />
+                            </div>
+
+                        </div>
+                        <div class="flex flex-col w-full gap-2">
+                            <label for="company" class="text-[#605D64] text-xs">هواپیما</label>
+                            <div class="parent-select">
+                                <select class="input-select" placeholder="متن ورودی" name="company" id="company">
+                                    <option value="test"> هواپیما</option>
+                                </select>
+
+                                <img src="/public/icon/Vector.svg" alt="" />
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">شماره پرواز</label><input type="text" id="achieve_date"
+                                class="input-style h-full" placeholder="متن ورودی"></div>
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">ساعت خروج</label><input type="text" id="achieve_date"
+                                class="input-style h-full" placeholder="Example: 22:10"></div>
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">ساعت رسیدن</label><input type="text" id="achieve_date"
+                                class="input-style h-full" placeholder="Example: 22:10"></div>
+
+                        <div class="flex gap-2 flex-col">
+                            <label for="time_flight" class="text-[#605D64] text-xs">مدت پرواز</label>
+                            <div class="flex gap-2 items-center h-full">
+                                <input type="text" class="input-style h-full w-[8.25rem]" placeholder="ساعت" />
+                                <input type="text" class="input-style h-full w-[8.25rem]" placeholder="دقیقه" />
+                            </div>
+                        </div>
+
+                            <div class="flex flex-col w-full gap-2">
+                                <label for="company" class="text-[#605D64] text-xs">کلاس پرواز</label>
+                                <div class="parent-select">
+                                    <select class="input-select" placeholder="متن ورودی" name="company" id="company">
+                                        <option value="test"> متن ورودی</option>
+                                    </select>
+    
+                                    <img src="/public/icon/Vector.svg" alt="" />
+                                </div>
+    
+                            </div>
+                    </div>
+
+                    <h2 class="font-semibold mt-4">مجوز ها</h2>
+                    <div class="grid grid-cols-3">
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="saturdayx" id="saturdayx">
+                            <label for="saturdayx" class="text-[#605D64]">صدور بلیط برگشت OPEN</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="sundayx" id="sundayx">
+                            <label for="sundayx" class="text-[#605D64]">جلوگیری از رزرو پرواز برگشت روی سایر ایرلاین
+                                ها</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="mondayx" id="mondayx">
+                            <label for="mondayx" class="text-[#605D64]">عدم نمایش به سایر آژانس ها</label>
+                        </div>
+                    </div>
+
+                    <h2 class="font-semibold mt-4">اطلاعات فروش</h2>
+                    <div class="grid gap-2 grid-cols-4">
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">نرخ بزرگسال (ریال)</label><input type="text"
+                                id="achieve_date" class="input-style h-full" placeholder="0" value="0"></div>
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">نرخ کودک (ریال)</label><input type="text"
+                                id="achieve_date" class="input-style h-full" placeholder="0" value="0"></div>
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">نرخ نوزاد (ریال)</label><input type="text"
+                                id="achieve_date" class="input-style" placeholder="0" value="0"></div>
+
+                            <div class="flex flex-col w-full gap-2">
+                                <label for="company" class="text-[#605D64] text-xs">نرخ</label>
+                                <div class="parent-select">
+                                    <select class="input-select" placeholder="متن ورودی" name="company" id="company">
+                                        <option value="test">Y Z1 0 OW 0 RT</option>
+                                    </select>
+    
+                                    <img src="/public/icon/Vector.svg" alt="" />
+                                </div>
+    
+                            </div>
+
+                        <div class="flex flex-col w-full gap-2"><label for="username"
+                                class="text-[#605D64] text-xs">کمیسیون مازاد</label>
+                            <div class="flex border rounded justify-between px-3 py-2 border-gray-300 items-center">
+                                <input type="text" value="0" id="username" class="outline-none w-full"
+                                    placeholder="0"><span>%</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col w-full gap-2"><label for="achieve_date"
+                                class="text-[#605D64] text-xs">رفرنس ایرلاین</label><input type="text" id="achieve_date"
+                                class="input-style" placeholder="متن وروردی"></div>
+                    </div>
+
+                    <h2 class="font-semibold mt-4">
+                        ظرفیت
+                    </h2>
+                    <div class="flex flex-col gap-3">
+                        <div class="grid gap-2 grid-cols-2">
+                            <div class="flex flex-col w-full gap-2"><label for="origin"
+                                    class="text-[#605D64] text-xs">ظرفيت Confirm</label><input type="text" id="origin"
+                                    class="input-style" placeholder="متن ورودی"></div>
+                            <div class="flex flex-col w-full gap-2"><label for="dest"
+                                    class="text-[#605D64] text-xs">حداکثر تعداد نمایش</label><input type="text"
+                                    id="dest" class="input-style" placeholder="متن ورودی"></div>
+                        </div>
+
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" class="w-4 h-4" name="tour" id="tour">
+                            <label for="tour" class="text-[#605D64]">مخصوص تور</label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-10">
+                        <h2 class="font-semibold">سهمیه ها</h2><button class="btn-outline gap-2 flex items-center"><img
+                                src="/icon/add-b.svg" alt="" /><span>سهمیه
+                                جدید</span></button>
+                    </div>
+
+                    <div class="flex items-center w-full gap-2">
+                        <div class="flex flex-col w-full gap-2"><label for="dest" class="text-[#605D64] text-xs">نام
+                                آژانس</label><input type="text" id="dest" class="input-style" placeholder="متن ورودی">
+                        </div>
+                        <div class="flex flex-col w-full gap-2"><label for="dest" class="text-[#605D64] text-xs">تعداد
+                                سهمیه</label><input type="text" id="dest" class="input-style" placeholder="متن ورودی">
+                        </div>
+                        <button class="pt-6 px-6"><img src="/icon/close.svg" class="h-full w-12" alt="..."></button>
+                    </div>
+
+                    <div class="flex justify-between mt-10">
+                        <h2 class="font-semibold mt-5">اجازه مشاهد</h2><button
+                            class="btn-outline gap-2 flex items-center"><img src="/icon/add-b.svg" alt=""><span>آژانس
+                                جدید</span></button>
+                    </div>
+
+                    <div class="flex items-center w-full gap-2">
+                        <div class="flex flex-col w-full gap-2"><label for="dest" class="text-[#605D64] text-xs">نام
+                                آژانس</label><input type="text" id="dest" class="input-style" placeholder="متن ورودی">
+                        </div>
+                        <button class="pt-6 px-6"><img src="/icon/close.svg" class="h-full w-6" alt="..."></button>
+                    </div>
+
+                    <div class="flex justify-between mt-10">
+                        <h2 class="font-semibold mt-5">جلوگیری از مشاهده</h2><button
+                            class="btn-outline gap-2 flex items-center"><img src="/icon/add-b.svg" alt=""><span>آژانس
+                                جدید</span></button>
+                    </div>
+
+                    <div class="flex items-center w-full gap-2">
+                        <div class="flex flex-col w-full gap-2"><label for="dest" class="text-[#605D64] text-xs">نام
+                                آژانس</label><input type="text" id="dest" class="input-style" placeholder="متن ورودی">
+                        </div>
+                        <button class="pt-6 px-6"><img src="/web/static/images/icon/close.svg" class="h-full w-6" alt="..."></button>
+                    </div>
+
+
+
+                    <div class="flex items-center justify-end gap-3 mt-10"><button
+                            class="btn-outline">انصراف</button><button class="btn-primary show-modal">ساخت
+                            پرواز</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+<script type="module" src="/static/js/company/script.js"></script>
+
+</html>

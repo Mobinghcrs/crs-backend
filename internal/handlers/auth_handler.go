@@ -1,86 +1,100 @@
 package handlers
 
 import (
-	"crs-backend/internal/database"
-	"crs-backend/internal/models"
-	"crs-backend/internal/repositories"
-	
 	"net/http"
-	
+	"booking-system/internal/utils"
+	"booking-system/internal/models"
+	"booking-system/internal/services"
 	"github.com/gin-gonic/gin"
-	"golang.org/x/crypto/bcrypt"
 )
-func Login1(c *gin.Context) {
-	var credentials struct {
-		Username string `json:"username"`
-		Password string `json:"password"`
-	}
 
-	if err := c.ShouldBindJSON(&credentials); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "داده‌های ورودی نامعتبر"})
-		return
-	}
-
-	// دریافت کاربر از دیتابیس
-	user, err := repositories.GetUserByUsername(database.DB, credentials.Username)
-	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "نام کاربری یا رمز عبور اشتباه"})
-		return
-	}
-	if user.Username == "" {
-		user.Username = user.Email // یا تولید خودکار
-	}
-	// بررسی تطابق رمز عبور
-	if err := bcrypt.CompareHashAndPassword(
-		[]byte(user.PasswordHash),
-		[]byte(credentials.Password),
-	); err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "نام کاربری یا رمز عبور اشتباه"})
-		return
-	}
-
-	// TODO: ایجاد توکن JWT
-	c.JSON(http.StatusOK, gin.H{"message": "ورود موفقیت آمیز"})
+type AuthHandler struct {
+	authService services.AuthService
 }
-// 📌 ثبت نام کاربر جدید
-func Register1(c *gin.Context) {
-	var user models.User
-	if err := c.ShouldBindJSON(&user); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "داده‌های ورودی نامعتبر"})
+
+func NewAuthHandler(authService services.AuthService) *AuthHandler {
+	return &AuthHandler{authService: authService}
+}
+
+type SignUpRequest struct {
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required,min=8"`
+	Role     string `json:"role" binding:"oneof=user admin"`
+}
+
+func (h *AuthHandler) SignUp(c *gin.Context) {
+	var req SignUpRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": utils.FormatValidationError(err)})
 		return
 	}
 
-	// بررسی وجود کاربر با نام کاربری تکراری
-	exists, err := repositories.UsernameExists(database.DB, user.Username)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در بررسی نام کاربری"})
-		return
-	}
-	if exists {
-		c.JSON(http.StatusConflict, gin.H{"error": "نام کاربری قبلا ثبت شده است"})
-		return
+	user := models.User{
+		Email:    req.Email,
+		Password: req.Password, // رمز عبور قبل از ذخیره در سرویس هش می‌شود
+		Role:     req.Role,
 	}
 
-	// هش کردن رمز عبور
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در پردازش رمز عبور"})
+	if err := h.authService.SignUp(&user); err != nil {
+		c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
 		return
 	}
-	user.PasswordHash = string(hashedPassword)
-
-	// ایجاد کاربر در دیتابیس
-	if err := repositories.CreateUser(database.DB, &user); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در ایجاد کاربر"})
-		return
-	}
-
-	// پنهان کردن فیلدهای حساس
-	user.Password = ""
-	user.PasswordHash = ""
 
 	c.JSON(http.StatusCreated, gin.H{
-		"message": "کاربر با موفقیت ثبت شد",
-		"user":    user,
+		"message": "کاربر با موفقیت ایجاد شد",
+		"user_id": user.ID,
 	})
+}
+
+type LoginRequest struct {
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required"`
+}
+
+func (h *AuthHandler) Login(c *gin.Context) {
+	var req LoginRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": utils.FormatValidationError(err)})
+		return
+	}
+
+	user, err := h.authService.Login(req.Email, req.Password)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()}) // نمایش دقیق خطا
+		return
+	}
+
+	token, err := utils.GenerateToken(user.ID, user.Role)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "خطا در تولید توکن"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"token": token,
+		"user": gin.H{
+			"id":    user.ID,
+			"email": user.Email,
+			"role":  user.Role,
+		},
+	})
+}
+
+func (h *AuthHandler) ListUsers(c *gin.Context) {
+	users, err := h.authService.GetAllUsers()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	cleanUsers := make([]gin.H, len(users))
+	for i, user := range users {
+		cleanUsers[i] = gin.H{
+			"id":    user.ID,
+			"email": user.Email,
+			"role":  user.Role,
+		}
+	}
+
+	c.JSON(http.StatusOK, cleanUsers)
 }

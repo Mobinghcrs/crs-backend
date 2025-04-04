@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جستجوی پرواز</title>
+    <style>
+        /* Reset و استایل پایه */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        /* استایل کانتینر اصلی */
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        /* استایل فرم جستجو */
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .search-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            align-self: end;
+        }
+        .search-btn:hover {
+            background: #0056b3;
+        }
+        /* استایل نتایج */
+        .results-container {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .flight-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flight-info {
+            flex: 2;
+        }
+        .flight-time {
+            flex: 1;
+            text-align: center;
+        }
+        .flight-price {
+            flex: 1;
+            text-align: left;
+            color: #2ecc71;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .flight-number {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+        }
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .flight-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .flight-price {
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form class="search-form" id="searchForm">
+            <div class="form-group">
+                <label>مبدا</label>
+                <input type="text" class="form-control" id="from" placeholder="مثلاً: تهران">
+            </div>
+            <div class="form-group">
+                <label>مقصد</label>
+                <input type="text" class="form-control" id="to" placeholder="مثلاً: استانبول">
+            </div>
+            <div class="form-group">
+                <label>تاریخ پرواز</label>
+                <input type="date" class="form-control" id="date">
+            </div>
+            <div class="form-group">
+                <label>تعداد مسافران</label>
+                <select class="form-control" id="passengers">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <button type="submit" class="search-btn">جستجوی پرواز</button>
+        </form>
+
+        <div class="results-container" id="results">
+            <!-- نتایج اینجا نمایش داده می‌شود -->
+        </div>
+    </div>
+
+    <script>
+        // نقطه پایان API جستجو، توجه کنید که از پارامترهای صحیح استفاده می‌کنیم.
+        const API_ENDPOINT = 'http://localhost:8080/flights/search';
+
+        document.getElementById('searchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const date = document.getElementById('date').value;
+            const passengers = document.getElementById('passengers').value;
+
+            try {
+                const response = await fetch(`${API_ENDPOINT}?origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&departure_date=${date}&passengers=${passengers}`);
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('خطا در دریافت اطلاعات');
+            }
+        });
+
+        function displayResults(data) {
+            const resultsContainer = document.getElementById('results');
+            // اگر پاسخ شامل count و results است، از results استفاده می‌کنیم
+            const flights = data.results || data;
+            
+            if (!flights || flights.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h3>پروازی یافت نشد</h3>
+                        <p>لطفاً پارامترهای جستجو را تغییر دهید</p>
+                    </div>
+                `;
+                return;
+            }
+
+            resultsContainer.innerHTML = flights.map(flight => `
+                <div class="flight-card">
+                    <div class="flight-info">
+                        <h3>${flight.Origin} → ${flight.Destination}</h3>
+                        <p class="flight-number">شماره پرواز: ${flight.FlightNumber}</p>
+                    </div>
+                    <div class="flight-time">
+                        <p>${new Date(flight.DepartureTime).toLocaleTimeString('fa-IR')}</p>
+                        <p>${new Date(flight.DepartureTime).toLocaleDateString('fa-IR')}</p>
+                    </div>
+                    <div class="flight-price">
+                        ${flight.AvailableSeats} صندلی باقیمانده
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

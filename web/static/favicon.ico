@@ -1,0 +1,1 @@
+r.StaticFile("/favicon.ico", "./web/static/favicon.ico")
